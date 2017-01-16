@@ -1,0 +1,25 @@
+version: '2'
+
+volumes:
+  db_data: {}
+  web_tls: {}
+
+services:
+  app:
+    image: starbelly-app
+    container_name: starbelly_app
+
+  db:
+    image: rethinkdb:2.3
+    container_name: starbelly_db
+    volumes:
+      - db_data:/data
+
+  web:
+    image: starbelly-web
+    container_name: starbelly_web
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - web_tls:/etc/nginx/tls
