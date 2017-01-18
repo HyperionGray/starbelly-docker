@@ -4,7 +4,7 @@ ENV LC_ALL=C.UTF-8
 
 # Install packaged dependencies.
 RUN apt-get update && \
-    apt-get install -y curl python3 && \
+    apt-get install -y curl python3 python3-lxml && \
     rm -fr /var/cache/apt/archives/*
 
 # Install python3 pip.
@@ -23,4 +23,5 @@ COPY dependencies/starbelly /starbelly
 # Set up root profile.
 COPY bash_aliases /root/.bash_aliases
 
-CMD ["python3", "/starbelly/starbelly.py"]
+WORKDIR /starbelly
+CMD ["python3", "-m", "starbelly"]
