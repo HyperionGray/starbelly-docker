@@ -32,3 +32,4 @@ services:
       - ../../starbelly-web-client:/starbelly-web-client
       - /var/cache/pub:/var/cache/pub
       - web_tls:/etc/nginx/tls
+      - ../../ng2_modular_admin:/ng2_modular_admin

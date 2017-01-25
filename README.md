@@ -32,6 +32,11 @@ edit code on the host and run/debug that code inside the container.
 The development setup requires you to place the `starbelly` and
 `starbelly-web-client` repos in the same directory as this `starbelly-docker`
 repo. It also expects you to place your host's pub cache at `/var/cache/pub`.
+repo. When you update the `pubspec.yaml`, you should run `pub get` from your
+host, not in your container, so that pub will populate packages into the host's
+pub cache. This setup has the benefit of making pub packages available for your
+IDE to analyze and to enable auto-complete.
+
 When running `starbelly-dev`, the `pub` daemon is not automatically started.
 You should connect to the container, e.g.
 `docker exec -it starbelly-dev-web /bin/bash`, and then run pub manually, e.g.

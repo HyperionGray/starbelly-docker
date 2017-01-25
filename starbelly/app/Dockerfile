@@ -24,4 +24,4 @@ COPY dependencies/starbelly /starbelly
 COPY bash_aliases /root/.bash_aliases
 
 WORKDIR /starbelly
-CMD ["python3", "-m", "starbelly"]
+CMD ["python3", "-m", "starbelly", "--ip", "0.0.0.0"]
