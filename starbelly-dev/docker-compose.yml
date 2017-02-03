@@ -6,12 +6,16 @@ volumes:
 
 services:
   app:
-    image: starbelly-dev-app
+    image: hyperiongray/starbelly-app:0.0.1
     container_name: starbelly-dev-app
+    environment:
+      PYTHONASYNCIODEBUG: 1
     ports:
       - 8000:8000
     volumes:
       - ../../starbelly:/starbelly
+    command:
+      python3 -m starbelly --ip 0.0.0.0 --reload
 
   db:
     image: rethinkdb:2.3
