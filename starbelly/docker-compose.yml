@@ -1,5 +1,9 @@
 version: '2'
 
+################################################################################
+# Make sure to keep this file in sync with the starbelly-dev/docker-compose.yml.
+################################################################################
+
 volumes:
   db_data: {}
   web_tls: {}

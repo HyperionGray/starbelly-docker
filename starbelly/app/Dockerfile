@@ -1,15 +1,15 @@
-FROM ubuntu:16.04
+FROM ubuntu:16.10
 ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
 
 # Install dependencies.
 RUN apt-get update && \
-    apt-get install -y curl build-essential python3 python3-lxml && \
+    apt-get install -y curl build-essential python3.6 python3.6-dev && \
     rm -fr /var/cache/apt/archives/*
 
 # Install python3 pip.
 RUN curl https://bootstrap.pypa.io/get-pip.py > /tmp/get-pip.py && \
-    python3 /tmp/get-pip.py && \
+    python3.6 /tmp/get-pip.py && \
     rm /tmp/get-pip.py
 
 # Install Python dependencies. (This is done before copying in Starbelly source
@@ -24,4 +24,5 @@ COPY dependencies/starbelly /starbelly
 COPY bash_aliases /root/.bash_aliases
 
 WORKDIR /starbelly
-CMD ["python3", "-m", "starbelly", "--ip", "0.0.0.0"]
+ENTRYPOINT ["python3.6", "-m", "starbelly.container_init"]
+CMD ["python3.6", "-m", "starbelly", "--ip", "0.0.0.0"]

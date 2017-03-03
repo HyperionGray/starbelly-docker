@@ -37,17 +37,9 @@ host, not in your container, so that pub will populate packages into the host's
 pub cache. This setup has the benefit of making pub packages available for your
 IDE to analyze and to enable auto-complete.
 
-When running `starbelly-dev`, the `pub` daemon is not automatically started.
-You should connect to the container, e.g.
-`docker exec -it starbelly-dev-web /bin/bash`, and then run pub manually, e.g.
-`cd /starbelly-web-client && pub serve --port 8001`.
-
 To build development images:
 
-    $ cd starbelly-docker/starbelly-dev/app
-    $ docker build -t starbelly-dev-app .
-    ...snip...
-    $ cd ../web
+    $ cd starbelly-docker/starbelly-dev/web
     $ docker build -t starbelly-dev-web .
     ...snip...
 
