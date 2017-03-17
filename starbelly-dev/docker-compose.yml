@@ -19,7 +19,7 @@ services:
     volumes:
       - ../../starbelly:/starbelly
     command:
-      python3.6 -m starbelly --ip 0.0.0.0 --reload
+      python3.6 -m starbelly --ip 0.0.0.0 --log-level info --reload
 
   db:
     image: rethinkdb:2.3
