@@ -20,7 +20,7 @@ these commands:
     $ docker build -t hyperiongray/starbelly-web:1.0.0 .
     ...snip...
 
-Substitute the actual release number instead of the `1.0.0` tag
+Substitute the actual release number instead of the `1.0.0` tag.
 
 ## Development
 

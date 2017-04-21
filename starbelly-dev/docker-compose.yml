@@ -20,6 +20,9 @@ services:
       - ../../starbelly:/starbelly
     command:
       python3.6 -m starbelly --ip 0.0.0.0 --log-level info --reload
+    # Allow some extra time for the crawler to finish downloads and cleanup
+    # when stopping the container.
+    stop_grace_period: 1m
 
   db:
     image: rethinkdb:2.3

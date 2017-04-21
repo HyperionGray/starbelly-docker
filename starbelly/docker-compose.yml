@@ -12,6 +12,9 @@ services:
   app:
     image: starbelly-app
     container_name: starbelly_app
+    # Allow some extra time for the crawler to finish downloads and cleanup
+    # when stopping the container.
+    stop_grace_period: 1m
 
   db:
     image: rethinkdb:2.3
