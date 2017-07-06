@@ -18,8 +18,13 @@ services:
       - 8000:8000
     volumes:
       - ../../starbelly:/starbelly
-    command:
-      python3.6 -m starbelly --ip 0.0.0.0 --log-level info --reload
+    command: >
+      python3.6 -m starbelly
+                --ip 0.0.0.0
+                --log-level info
+                --asyncio-log /var/log/starbelly-asyncio.log
+                --error-log /var/log/starbelly-error.log
+                --reload 
     # Allow some extra time for the crawler to finish downloads and cleanup
     # when stopping the container.
     stop_grace_period: 1m

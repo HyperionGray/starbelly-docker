@@ -17,6 +17,9 @@ RUN curl https://bootstrap.pypa.io/get-pip.py > /tmp/get-pip.py && \
 COPY dependencies/starbelly/requirements.txt /tmp
 RUN pip3 install -r /tmp/requirements.txt
 
+COPY dependencies/rethinkdb-2.3.6.20170623.tar.gz /tmp/rethinkdb-2.3.6.20170623.tar.gz
+RUN pip3 install /tmp/rethinkdb-2.3.6.20170623.tar.gz
+
 # Get Starbelly source code.
 COPY dependencies/starbelly /starbelly
 

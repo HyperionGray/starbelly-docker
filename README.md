@@ -39,6 +39,10 @@ IDE to analyze and to enable auto-complete.
 
 To build development images:
 
+    $ cd starbelly-docker/starbelly-dev/app
+    $ docker build -t starbelly-dev-app .
+    ...snip...
+
     $ cd starbelly-docker/starbelly-dev/web
     $ docker build -t starbelly-dev-web .
     ...snip...
