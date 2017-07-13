@@ -8,7 +8,7 @@ RUN cd /tmp && \
     mv server.key server.crt /etc/nginx/tls
 
 # Install and configure supervisor.
-RUN apt-get install -y supervisor
+RUN apt-get install -y supervisor vim
 COPY supervisor.conf /etc/supervisor/conf.d/starbelly.conf
 
 # Override nginx.conf to proxy to pub.
