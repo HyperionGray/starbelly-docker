@@ -15,7 +15,8 @@ services:
     environment:
       PYTHONASYNCIODEBUG: 1
     ports:
-      - 8000:8000
+      - 8000:8000 # Dev server
+      - 8888:8888 # Jupyter notebook
     volumes:
       - ../../starbelly:/starbelly
     command: >
@@ -24,7 +25,7 @@ services:
                 --log-level info
                 --asyncio-log /var/log/starbelly-asyncio.log
                 --error-log /var/log/starbelly-error.log
-                --reload 
+                --reload
     # Allow some extra time for the crawler to finish downloads and cleanup
     # when stopping the container.
     stop_grace_period: 1m
