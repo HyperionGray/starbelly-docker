@@ -28,7 +28,7 @@ COPY dependencies/starbelly-web-client /starbelly-web-client
 # pub as root).
 RUN mkdir -p $PUB_CACHE && \
     cd /starbelly-web-client && \
-    pub upgrade && \
+    pub get && \
     chown -R root:root "$PUB_CACHE" && \
     find "$PUB_CACHE" -type f -exec chmod 644 {} \; && \
     find "$PUB_CACHE" -type d -exec chmod 755 {} \; && \
