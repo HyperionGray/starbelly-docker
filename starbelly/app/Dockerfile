@@ -20,6 +20,9 @@ RUN pip3 install -r /tmp/requirements.txt
 COPY dependencies/rethinkdb-2.3.6.20170623.tar.gz /tmp/rethinkdb-2.3.6.20170623.tar.gz
 RUN pip3 install /tmp/rethinkdb-2.3.6.20170623.tar.gz
 
+# Build formasaurus model so that it is cached.
+RUN python3.6 -c 'import formasaurus; formasaurus.extract_forms("<html/>")'
+
 # Get Starbelly source code.
 COPY dependencies/starbelly /starbelly
 
