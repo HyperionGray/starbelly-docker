@@ -10,21 +10,21 @@ volumes:
 
 services:
   app:
-    image: starbelly-app
-    container_name: starbelly_app
+    image: hyperiongray/starbelly-app:0.0.1
+    container_name: starbelly-app
     # Allow some extra time for the crawler to finish downloads and cleanup
     # when stopping the container.
     stop_grace_period: 1m
 
   db:
     image: rethinkdb:2.3
-    container_name: starbelly_db
+    container_name: starbelly-db
     volumes:
       - db_data:/data
 
   web:
-    image: starbelly-web
-    container_name: starbelly_web
+    image: hyperiongray/starbelly-web:0.0.1
+    container_name: starbelly-web
     ports:
       - 80:80
       - 443:443

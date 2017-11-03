@@ -24,10 +24,10 @@ except KeyError:
 
 logger.info('Renewed domains: %r', domains_env.split(' '))
 src_path = Path(lineage_env)
-cert_src = src_path / 'fullchain.pem'
-key_src = src_path / 'privkey.pem'
-cert_dst = '{}:{}'.format(CONTAINER, CONTAINER_TLS / 'server.crt')
-key_dst = '{}:{}'.format(CONTAINER, CONTAINER_TLS / 'server.key')
+cert_src = str((src_path / 'fullchain.pem').resolve())
+key_src = str((src_path / 'privkey.pem').resolve())
+cert_dst = '{}:{}'.format(CONTAINER, str(CONTAINER_TLS / 'server.crt'))
+key_dst = '{}:{}'.format(CONTAINER, str(CONTAINER_TLS / 'server.key'))
 
 try:
     logger.info('Copying %s to Docker %s', cert_src, cert_dst)
@@ -35,8 +35,9 @@ try:
     logger.info('Copying %s to Docker %s', key_src, key_dst)
     subprocess.run(['docker', 'cp', key_src, key_dst], check=True)
     logger.info('Reloading nginx', key_src, key_dst)
-    subprocess.run(['docker', 'exec', CONTAINER, 'nginx -s reload'], check=True)
-except CalledProcessError as cpe:
+    subprocess.run(['docker', 'exec', CONTAINER, 'nginx', '-s', 'reload'],
+        check=True)
+except subprocess.CalledProcessError as cpe:
     logger.error('Failed to run command `%s` (exit %d):\n%s', cpe.cmd,
         cpe.returncode, cpe.stderr)
     sys.exit(1)

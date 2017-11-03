@@ -1,7 +1,9 @@
 # Starbelly: Docker
 
-This repository contains Dockerfiles and Docker Compose scripts for
-[the Starbelly crawler](https://gitlab.com/hyperion-gray/starbelly).
+This repository contains Dockerfiles and Docker Compose scripts for [the
+Starbelly crawler](https://gitlab.com/hyperion-gray/starbelly). The main
+documentation for Starbelly is at
+[starbelly.readthedocs.io](https://starbelly.readthedocs.io/en/latest).
 
 ## Production
 
