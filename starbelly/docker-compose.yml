@@ -10,7 +10,7 @@ volumes:
 
 services:
   app:
-    image: hyperiongray/starbelly-app:0.0.1
+    image: hyperiongray/starbelly-app:1.0.0
     container_name: starbelly-app
     # Allow some extra time for the crawler to finish downloads and cleanup
     # when stopping the container.
@@ -23,7 +23,7 @@ services:
       - db_data:/data
 
   web:
-    image: hyperiongray/starbelly-web:0.0.1
+    image: hyperiongray/starbelly-web:1.0.0
     container_name: starbelly-web
     ports:
       - 80:80
