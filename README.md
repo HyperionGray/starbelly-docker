@@ -50,3 +50,8 @@ To build development images:
     ...snip...
 
 We recommend that you *do not* use a version tag when building the dev images.
+
+---
+
+[![define hyperion gray](https://hyperiongray.s3.amazonaws.com/define-hg.svg)](https://hyperiongray.com/?pk_campaign=github&pk_kwd=starbelly-docker "Hyperion Gray")
+
