@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 ################################################################################
 # Make sure to keep this file in sync with the starbelly/docker-compose.yml.
@@ -10,13 +10,13 @@ volumes:
 
 services:
   app:
-    image: hyperiongray/starbelly-app:0.0.1
+    image: starbelly-dev-app
     container_name: starbelly-dev-app
     environment:
       PYTHONASYNCIODEBUG: 1
     ports:
-      - 8000:8000 # Dev server
-      - 8888:8888 # Jupyter notebook
+      - 127.0.0.1:8000:8000 # Dev server
+      - 127.0.0.1:8001:8888 # Jupyter notebook
     volumes:
       - ../../starbelly:/starbelly
     command: >
@@ -31,10 +31,10 @@ services:
     stop_grace_period: 1m
 
   db:
-    image: rethinkdb:2.3
+    image: rethinkdb:2.3.6
     container_name: starbelly-dev-db
     ports:
-      - 8080:8080
+      - 127.0.0.1:8002:8080 # RethinkDB GUI
     volumes:
       - db_data:/data
 
@@ -44,9 +44,10 @@ services:
     ports:
       - 80:80
       - 443:443
-      - 8001:8001
+      - 127.0.0.1:8003:8080 # Pub Dev Server
     volumes:
-      - ../../starbelly-web-client:/starbelly-web-client
       - /var/cache/pub:/var/cache/pub
       - web_tls:/etc/nginx/tls
-      - ../../ng2_modular_admin:/ng2_modular_admin
+      - ../../ng_fontawesome:/ng_fontawesome
+      - ../../ng_modular_admin:/ng_modular_admin
+      - ../../starbelly-web-client:/starbelly-web-client

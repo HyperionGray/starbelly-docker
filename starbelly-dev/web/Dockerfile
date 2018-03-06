@@ -1,5 +1,4 @@
-FROM hyperiongray/starbelly-web:0.0.1
-
+FROM hyperiongray/starbelly-web:1.1.0
 # Create a self-signed certificate.
 RUN cd /tmp && \
     openssl req -x509 -newkey rsa:2048 \
@@ -17,5 +16,7 @@ COPY nginx.conf /etc/nginx/conf.d/starbelly.conf
 # Remove symlink from /var/log/nginx/access.log to /dev/stdout. Nginx logs too
 # much to Docker's log collector.
 RUN rm /var/log/nginx/access.log
+
+ENV PS1='starbelly-dev-web:$PWD# '
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]

@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 ################################################################################
 # Make sure to keep this file in sync with the starbelly-dev/docker-compose.yml.
@@ -10,20 +10,20 @@ volumes:
 
 services:
   app:
-    image: starbelly-app
+    image: starbelly-app:1.1.0
     container_name: starbelly_app
     # Allow some extra time for the crawler to finish downloads and cleanup
     # when stopping the container.
     stop_grace_period: 1m
 
   db:
-    image: rethinkdb:2.3
+    image: rethinkdb:2.3.6
     container_name: starbelly_db
     volumes:
       - db_data:/data
 
   web:
-    image: starbelly-web
+    image: starbelly-web:1.1.0
     container_name: starbelly_web
     ports:
       - 80:80

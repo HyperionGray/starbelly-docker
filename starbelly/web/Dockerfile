@@ -34,6 +34,8 @@ RUN mkdir -p $PUB_CACHE && \
     find "$PUB_CACHE" -type d -exec chmod 755 {} \; && \
     pub build
 
+ENV PS1='starbelly-web:$PWD# '
+
 # Container init script.
 COPY container-init.sh /container-init.sh
 RUN chmod +x /container-init.sh

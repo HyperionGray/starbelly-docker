@@ -1,10 +1,10 @@
-FROM ubuntu:16.10
+FROM ubuntu:17.10
 ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
 
 # Install dependencies.
 RUN apt-get update && \
-    apt-get install -y curl build-essential python3.6 python3.6-dev && \
+    apt-get install -y curl build-essential python3 python3-dev python3-pip && \
     rm -fr /var/cache/apt/archives/*
 
 # Install python3 pip.
@@ -29,6 +29,7 @@ COPY dependencies/starbelly /starbelly
 # Set up root profile.
 COPY bash_aliases /root/.bash_aliases
 
+ENV PS1='starbelly-app:$PWD# '
 WORKDIR /starbelly
 ENTRYPOINT ["python3.6", "-m", "starbelly.container_init"]
 CMD ["python3.6", "-m", "starbelly", "--ip", "0.0.0.0"]
