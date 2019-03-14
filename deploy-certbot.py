@@ -6,7 +6,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-CONTAINER = 'starbelly-web'
+CONTAINER = 'starbelly_web'
 CONTAINER_TLS = Path('/etc/nginx/tls')
 
 logging.basicConfig()
