@@ -30,3 +30,4 @@ services:
       - 443:443
     volumes:
       - web_tls:/etc/nginx/tls
+      - ./certbot-webroot:/certbot-webroot
