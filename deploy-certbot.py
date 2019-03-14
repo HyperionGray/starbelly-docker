@@ -24,8 +24,8 @@ except KeyError:
 
 logger.info('Renewed domains: %r', domains_env.split(' '))
 src_path = Path(lineage_env)
-cert_src = str((src_path / 'fullchain.pem').resolve())
-key_src = str((src_path / 'privkey.pem').resolve())
+cert_src = str((src_path / 'fullchain1.pem').resolve())
+key_src = str((src_path / 'privkey1.pem').resolve())
 cert_dst = '{}:{}'.format(CONTAINER, str(CONTAINER_TLS / 'server.crt'))
 key_dst = '{}:{}'.format(CONTAINER, str(CONTAINER_TLS / 'server.key'))
 
@@ -34,7 +34,7 @@ try:
     subprocess.run(['docker', 'cp', cert_src, cert_dst], check=True)
     logger.info('Copying %s to Docker %s', key_src, key_dst)
     subprocess.run(['docker', 'cp', key_src, key_dst], check=True)
-    logger.info('Reloading nginx', key_src, key_dst)
+    logger.info('Reloading nginx...')
     subprocess.run(['docker', 'exec', CONTAINER, 'nginx', '-s', 'reload'],
         check=True)
 except subprocess.CalledProcessError as cpe:
