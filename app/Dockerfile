@@ -1,4 +1,4 @@
-FROM ubuntu:17.10
+FROM ubuntu:18.04
 ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
 
@@ -17,11 +17,11 @@ RUN curl https://bootstrap.pypa.io/get-pip.py > /tmp/get-pip.py && \
 COPY dependencies/starbelly/requirements.txt /tmp
 RUN pip3 install -r /tmp/requirements.txt
 
-COPY dependencies/rethinkdb-2.3.6.20170623.tar.gz /tmp/rethinkdb-2.3.6.20170623.tar.gz
-RUN pip3 install /tmp/rethinkdb-2.3.6.20170623.tar.gz
+COPY dependencies/rethinkdb-2.3.6.tar.gz /tmp/rethinkdb-2.3.6.tar.gz
+RUN pip3 install /tmp/rethinkdb-2.3.6.tar.gz
 
 # Build formasaurus model so that it is cached.
-RUN python3.6 -c 'import formasaurus; formasaurus.extract_forms("<html/>")'
+#RUN python3.6 -c 'import formasaurus; formasaurus.extract_forms("<html/>")'
 
 # Get Starbelly source code.
 COPY dependencies/starbelly /starbelly

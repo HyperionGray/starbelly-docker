@@ -26,8 +26,7 @@ services:
     image: hyperiongray/starbelly-web:1.0.0
     container_name: starbelly_web
     ports:
-      - 80:80
-      - 443:443
+      - 9100:443
     volumes:
       - web_tls:/etc/nginx/tls
       - ./certbot-webroot:/certbot-webroot

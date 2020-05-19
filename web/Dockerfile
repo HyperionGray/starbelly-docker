@@ -5,16 +5,13 @@ ENV PUB_CACHE=/var/cache/pub
 
 # Install OS packages.
 RUN apt-get update && \
-    apt-get install -y apt-transport-https curl && \
-    sh -c 'curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -' && \
-    sh -c 'curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list' && \
-    apt-get update && \
-    apt-get install -y apache2-utils dart && \
+    apt-get install -y apt-transport-https curl apache2-utils unzip && \
     rm -fr /var/cache/apt/archives/*
 
-# Add Dart binaries to path. (For some reason, the Dart package only puts
-# `dart` in /usr/bin, and not `pub` or any other Dart SDK tools.)
-ENV PATH=$PATH:/usr/lib/dart/bin
+# Install Dart
+RUN curl 'https://storage.googleapis.com/dart-archive/channels/stable/release/1.19.0/sdk/dartsdk-linux-x64-release.zip' -o /opt/dartsdk-linux-x64-release.zip
+RUN cd /opt && unzip dartsdk-linux-x64-release.zip
+ENV PATH=$PATH:/opt/dart-sdk/bin
 
 # Configure nginx.
 RUN rm /etc/nginx/conf.d/default.conf && \
