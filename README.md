@@ -17,10 +17,10 @@ the `starbelly` and `starbelly-web-client` repos checked out in the same
 directory as `starbelly-docker`. `$STARBELLY_ROOT` must point to the path that
 contains all of these repos. Perform this intial setup:
 
-    $ cd $STARBELLY_ROOT/starbelly-docker/starbelly/app/dependencies/starbelly
-    $ git clone ../../starbelly
-    $ cd $STARBELLY_ROOT/starbelly-docker/starbelly/web/dependencies/starbelly-web-client
-    $ git clone ../../starbelly-web-client
+    $ cd $STARBELLY_ROOT/starbelly-docker/app/dependencies
+    $ git clone ../../../starbelly
+    $ cd $STARBELLY_ROOT/starbelly-docker/web/dependencies
+    $ git clone ../../../starbelly-web-client
 
 When you want to update the Docker images to match your local repos, you can run
 `git pull` in each of these repos, but when you want to produce official release
@@ -44,3 +44,12 @@ To upload release images to Docker Hub, you need to tag them and push them:
 Note that `$STARBELLY_TAG` should be the version number that you want to
 release. You should update `docker-compose.yml` with these new version numbers
 after pushing.
+
+## Running containers
+
+Run the containers with Docker Compose:
+
+    $ docker-compose up
+
+Now you can connect to Starbelly using a browser. The default username and password are
+`admin` and `admin`.

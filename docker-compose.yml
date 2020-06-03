@@ -1,32 +1,33 @@
 version: '3'
 
 ################################################################################
-# Make sure to keep this file in sync with the starbelly-dev/docker-compose.yml.
+# Make sure to keep this file in sync with the starbelly/dev/docker-compose.yml.
 ################################################################################
 
 volumes:
+  app_conf: {}
   db_data: {}
   web_tls: {}
 
 services:
   app:
-    image: hyperiongray/starbelly-app:1.0.0
-    container_name: starbelly_app
+    image: hyperiongray/starbelly-app:2.0.0b0
+    volumes:
+      - app_conf:/starbelly/conf
     # Allow some extra time for the crawler to finish downloads and cleanup
     # when stopping the container.
     stop_grace_period: 1m
 
   db:
-    image: rethinkdb:2.3.6
-    container_name: starbelly_db
+    image: rethinkdb:2.4
     volumes:
       - db_data:/data
 
   web:
-    image: hyperiongray/starbelly-web:1.0.0
-    container_name: starbelly_web
+    image: hyperiongray/starbelly-web:2.0.0b0
     ports:
-      - 9100:443
+      - 80:80
+      - 443:443
     volumes:
       - web_tls:/etc/nginx/tls
       - ./certbot-webroot:/certbot-webroot

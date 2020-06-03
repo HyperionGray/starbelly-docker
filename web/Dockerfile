@@ -9,7 +9,7 @@ RUN apt-get update && \
     rm -fr /var/cache/apt/archives/*
 
 # Install Dart
-RUN curl 'https://storage.googleapis.com/dart-archive/channels/stable/release/1.19.0/sdk/dartsdk-linux-x64-release.zip' -o /opt/dartsdk-linux-x64-release.zip
+RUN curl 'https://storage.googleapis.com/dart-archive/channels/stable/release/2.7.1/sdk/dartsdk-linux-x64-release.zip' -o /opt/dartsdk-linux-x64-release.zip
 RUN cd /opt && unzip dartsdk-linux-x64-release.zip
 ENV PATH=$PATH:/opt/dart-sdk/bin
 
@@ -21,15 +21,14 @@ COPY nginx.conf /etc/nginx/conf.d/starbelly.conf
 # Get Starbelly source code.
 COPY dependencies/starbelly-web-client /starbelly-web-client
 
-# Build the web client code (and work around file permissions bug when running
-# pub as root).
+# Build the web client code. (The --no-release flag is required because the client
+# doesn't work in release mode... not sure why?)
+ENV PATH=$PATH:/var/cache/pub/bin
 RUN mkdir -p $PUB_CACHE && \
     cd /starbelly-web-client && \
     pub get && \
-    chown -R root:root "$PUB_CACHE" && \
-    find "$PUB_CACHE" -type f -exec chmod 644 {} \; && \
-    find "$PUB_CACHE" -type d -exec chmod 755 {} \; && \
-    pub build
+    pub global activate webdev 2.5.4 && \
+    webdev build --no-release
 
 ENV PS1='starbelly-web:$PWD# '
 
