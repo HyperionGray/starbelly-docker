@@ -11,7 +11,8 @@ volumes:
 
 services:
   app:
-    image: hyperiongray/starbelly-app:2.0.0b2
+    image: hyperiongray/starbelly-app:2.0.0b4
+    build: app
     volumes:
       - app_conf:/starbelly/conf
     # Allow some extra time for the crawler to finish downloads and cleanup
