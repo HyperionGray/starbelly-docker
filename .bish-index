@@ -1,0 +1,4 @@
+./AGENTS.md
+./README.md
+./web/container-init.sh
+./deploy-certbot.py
